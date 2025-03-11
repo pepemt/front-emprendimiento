@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 
-function Card({ IdProducto, Nombre, Modelo, IdUsuario, image }) {
+function ProductCard({ IdProducto, Nombre, Modelo, IdUsuario, image }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -9,16 +10,20 @@ function Card({ IdProducto, Nombre, Modelo, IdUsuario, image }) {
   };
 
   return (
-    <div className="card" onClick={handleClick}>
-      <img src={image} alt={Nombre} className="card-image" onError={(e) => e.target.src = "/assets/default.jpg"} />
-      <div className="card-details">
-        <h3>{Nombre}</h3>
-        <p>Modelo: {Modelo}</p>
-        <p>ID Producto: {IdProducto}</p>
-        <p>ID Usuario: {IdUsuario}</p>
-      </div>
-    </div>
+    
+    <Card style={{ width: '18rem', height: "20rem"}} onClick={handleClick}>
+      <Card.Header>{Nombre}</Card.Header>
+      <Card.Img variant="top" src={image} onError={(e) => e.target.src = "/assets/default.jpg"} />
+      <Card.Body>
+        <Card.Text>ID Producto: {IdProducto}</Card.Text>
+        <Card.Text>ID Usuario: {IdUsuario}</Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <small className="text-muted">Last updated 3 mins ago</small>
+      </Card.Footer>
+    </Card>
+
   );
 }
 
-export default Card;
+export default ProductCard;

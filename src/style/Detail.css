@@ -1,0 +1,18 @@
+.details-container {
+  background-color: #f8f9fa; /* Fondo claro */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-container h2, .details-container h3 {
+  color: #343a40; /* Color de texto oscuro */
+}
+
+.readings p, .led-control p {
+  color: #495057; /* Color de texto intermedio */
+}
+
+.chart {
+  margin-top: 20px;
+}

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
+//import './Details.css'; // Importar el archivo CSS
+import '../style/Detail.css';
+
 
 const Details = () => {
   const { IdProducto } = useParams();
@@ -30,7 +33,7 @@ const Details = () => {
   useEffect(() => {
     const fetchTemperature = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/db/productos/${IdProducto}/ultima_temperatura`);
+        const response = await fetch(`http://10.48.126.190:8000/db/productos/${IdProducto}/ultima_temperatura`);
         if (!response.ok) {
           throw new Error('No se pudo obtener la última temperatura');
         }
@@ -43,7 +46,7 @@ const Details = () => {
 
     const fetchHumidity = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/db/productos/${IdProducto}/ultima_humedad`);
+        const response = await fetch(`http://10.48.126.190:8000/db/productos/${IdProducto}/ultima_humedad`);
         if (!response.ok) {
           throw new Error('No se pudo obtener la última humedad');
         }
@@ -56,8 +59,8 @@ const Details = () => {
 
     const fetchHistoricalData = async () => {
       try {
-        const responseTemp = await fetch(`http://localhost:8000/db/productos/${IdProducto}/historico_temperatura`);
-        const responseHum = await fetch(`http://localhost:8000/db/productos/${IdProducto}/historico_humedad`);
+        const responseTemp = await fetch(`http://10.48.126.190:8000/db/productos/${IdProducto}/historico_temperatura`);
+        const responseHum = await fetch(`http://10.48.126.190:8000/db/productos/${IdProducto}/historico_humedad`);
         if (!responseTemp.ok || !responseHum.ok) {
           throw new Error('No se pudo obtener el historial de temperatura o humedad');
         }
@@ -107,13 +110,13 @@ const Details = () => {
     const newValue = e.target.value;
     setLedValue(newValue);
     try {
-    const response = await fetch('http://172.20.10.6:80/control_leds', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ brightness: parseInt(newValue, 10) }),
-    });
+      const response = await fetch('http://172.20.10.6:80/control_leds', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ brightness: parseInt(newValue, 10) }),
+      });
       if (!response.ok) {
         throw new Error('No se pudo actualizar el valor del LED');
       }

@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import Login from './components/Login';
 import CardList from './components/CardList';
 import Details from './components/Details';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [count, setCount] = useState(0);
